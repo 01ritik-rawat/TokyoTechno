@@ -23,11 +23,11 @@
     
 </body>
 <script>
-    $(document).ready(function(){
-        $("button").click(function(){
-            alert("all set!");
-        })
-    })
+    // $(document).ready(function(){
+    //     $("button").click(function(){
+    //         alert("all set!");
+    //     })
+    // })
 </script>
 
 </html>
