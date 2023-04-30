@@ -30,4 +30,30 @@
     // })
 </script>
 
+<style>
+    .slider-nav{
+        color: black;
+    }
+    .carousel-image {
+     height: 500px; /* to fix the uneven height of banner */
+    }
+    .trending-wrapper{
+        margin: 20px;
+
+    }
+    .trending-img{
+        height: 100px;
+
+    }
+    .trending-item{
+        float:left;
+        width: 20%;
+
+    }
+
+
+    
+
+</style>
+
 </html>
