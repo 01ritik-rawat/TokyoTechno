@@ -18,7 +18,10 @@ class ProductController extends Controller
     }
     public function detail($id){
         $data= Product::find($id);
-        return view('detail',['product'=>$data]);
+        $imgUrls=json_decode($data['product_display_image']);
+    
+        // return $imgUrls->{'1'};
+        return view('detail',['product'=>$data,  'urls'=>$imgUrls]);
 
     }
 }

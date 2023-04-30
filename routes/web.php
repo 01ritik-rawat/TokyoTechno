@@ -24,3 +24,4 @@ Route::get("login",function(){
 });
 Route::post("login",[UserController::class,'login']);
 Route::get("/",[ProductController::class,'index']); //redirected here after successful login. 
+Route::get("/detail/{id}",[ProductController::class,'detail']); //redirected here after successful login. 
