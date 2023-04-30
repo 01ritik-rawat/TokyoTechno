@@ -26,3 +26,5 @@ Route::post("login",[UserController::class,'login']);
 Route::get("/",[ProductController::class,'index']); //redirected here after successful login. 
 Route::get("/detail/{id}",[ProductController::class,'detail']); //product detail page
 Route::get("/search",[ProductController::class,'search']); //Search results page 
+Route::post("add_to_cart",[ProductController::class,'addToCart']); //Search results page 
+

@@ -20,7 +20,12 @@
             <h1>{{$product['name']}}</h1>
             <p class="price">&#8377. {{$product['price']}}</p>
             <button class="btn btn-primary buy-now">Buy Now</button>
-            <button class="btn btn-success add-to-cart">Add to Cart</button>
+
+            <form action="/add_to_cart" method="POST">
+                <input type="hidden" name="product_id" value="{{$product['id']}}">
+                @csrf
+                <button class="btn btn-success add-to-cart">Add to Cart</button>
+            </form>
         </div>
     </div>
 </div>

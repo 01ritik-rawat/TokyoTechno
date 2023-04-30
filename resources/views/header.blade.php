@@ -1,3 +1,10 @@
+<?php
+
+use App\Http\Controllers\ProductController;
+
+$cartCount = ProductController::cartItem();
+
+?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">E-Comm</a>
@@ -10,7 +17,7 @@
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="#">Cart</a>
+                    <a class="nav-link " aria-current="page" href="#">Cart({{$cartCount}})</a>
                 </li>
 
                 <!-- <li class="nav-item dropdown">
