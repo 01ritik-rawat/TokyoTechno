@@ -1,4 +1,6 @@
 <!-- Footer -->
+
+<!-- todo:: customize to the fullest -->
 <footer class="text-center text-lg-start bg-light text-muted">
     <!-- Section: Social media -->
     <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
@@ -11,22 +13,22 @@
         <!-- Right -->
         <div>
             <a href="" class="me-4 text-reset">
-                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-facebook-f">facebook</i>
             </a>
             <a href="" class="me-4 text-reset">
-                <i class="fab fa-twitter"></i>
+                <i class="fab fa-twitter">Instagram</i>
             </a>
-            <a href="" class="me-4 text-reset">
+            <a href="https://github.com/01ritik-rawat/E-com-laravel" class="me-4 text-reset">
                 <i class="fab fa-google"></i>
             </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-instagram"></i>
+            <a href="https://www.instagram.com/brat__ritik/ " class="me-4 text-reset">
+                <i class="fab fa-instagram">Instagram</i>
             </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-linkedin"></i>
+            <a href="https://www.linkedin.com/in/ritik-rawat-660879219/" class="me-4 text-reset">
+                <i class="fab fa-linkedin">LinkedIn</i>
             </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-github"></i>
+            <a href="https://github.com/01ritik-rawat/E-com-laravel" class="me-4 text-reset">
+                <i class="fab fa-github">GitHub</i>
             </a>
         </div>
         <!-- Right -->
@@ -55,16 +57,16 @@
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                     <!-- Links -->
                     <h6 class="text-uppercase fw-bold mb-4">
-                        Products
+                        Contact Us @
                     </h6>
                     <p>
-                        <a href="#!" class="text-reset">Angular</a>
+                        <a href="https://www.instagram.com/brat__ritik/" class="text-reset">Instagram</a>
                     </p>
                     <p>
-                        <a href="#!" class="text-reset">React</a>
+                        <a href="https://www.linkedin.com/in/ritik-rawat-660879219/" class="text-reset">LinkedIn</a>
                     </p>
                     <p>
-                        <a href="#!" class="text-reset">Vue</a>
+                        <a href="https://github.com/01ritik-rawat/E-com-laravel" class="text-reset">GitHub</a>
                     </p>
                     <p>
                         <a href="#!" class="text-reset">Laravel</a>
@@ -115,7 +117,7 @@
     <!-- Copyright -->
     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
         © 2021 Copyright:
-        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">RitikTojapan.com</a>
+        <a class="text-reset fw-bold" href="https://www.linkedin.com/in/ritik-rawat-660879219/">RitikTojapan.com</a>
     </div>
     <!-- Copyright -->
 </footer>
