@@ -30,8 +30,8 @@
                     <a class="nav-link disabled" href="#" tabindex="-1" aria>Disabled</a>
                 </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form action='/search' class="d-flex">
+                <input class="form-control me-2 search-box" type="search" placeholder="Search" name="query" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>

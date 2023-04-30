@@ -50,7 +50,12 @@
         width: 20%;
 
     }
-
+    .search-box{
+        width: 500px !important;
+    }
+    .card-title, .card-subtitle {
+    text-decoration: none;
+}
 
     
 
