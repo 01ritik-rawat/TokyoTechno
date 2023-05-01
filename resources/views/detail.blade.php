@@ -18,7 +18,7 @@
         </div>
         <div class="col-md-6">
             <h1>{{$product['name']}}</h1>
-            <p class="price">&#8377. {{$product['price']}}</p>
+            <p class="price">&#8377  {{$product['price']}}</p>
             <button class="btn btn-primary buy-now">Buy Now</button>
 
             <form action="/add_to_cart" method="POST">

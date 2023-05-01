@@ -27,6 +27,13 @@ Route::get("/",[ProductController::class,'index']); //redirected here after succ
 Route::get("/detail/{id}",[ProductController::class,'detail']); //product detail page
 Route::get("/search",[ProductController::class,'search']); //Search results page 
 Route::post("add_to_cart",[ProductController::class,'addToCart']); //Search results page 
-Route::get("logout",[UserController::class,'logout']); //Search results page 
+Route::get("logout",[UserController::class,'logout']); //Search results page w
+Route::get("cart_list",[ProductController::class,'cartList']); //cart List 
+
+
+
+
+Route::get("test",[UserController::class,'test']); //fro testing purposes only 
+
 
 

@@ -11,6 +11,15 @@ use function PHPUnit\Framework\isEmpty;
 
 class UserController extends Controller 
 {
+    public function test(){
+        // $instance=new User;
+        // $id=Session::get('user')->id;
+        // $data= $instance->cart($id);
+        $user = User::find(1);
+        $carts = $user->cart;
+        return $carts;
+
+    }
     public function login(Request $request){
 
         //validate user
@@ -29,5 +38,7 @@ class UserController extends Controller
         Session::forget('user');
          return redirect('/login');
     }
+
+    
 
 }

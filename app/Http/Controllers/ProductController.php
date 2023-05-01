@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session as FacadesSession;
 
 class ProductController extends Controller
 {
@@ -46,14 +48,22 @@ class ProductController extends Controller
         }
         return redirect('/login');
     }
-    
+
     public static function cartItem()
-        {
-            $user_id = session()->get('user')['id'];
-    
-            $items = Cart::where('user_id',$user_id)->count('item_count');
-            return $items;
-    
-        }
+    {
+        $user_id = session()->get('user')['id'];
+
+        $items = Cart::where('user_id', $user_id)->count('item_count');
+        return $items;
+    }
+
+    public function cartList(){
+        $userId=FacadesSession::get('user')->id;
+
+        $cartItems = Cart::with('product')->where('user_id', $userId)->get();
+        return view('cartList', ['products' => $cartItems]);
+
+
+    }
     
 }
