@@ -31,7 +31,8 @@ Route::get("logout",[UserController::class,'logout']); //Search results page w
 
 Route::prefix('user')->middleware('UserLoginAuth')->group(function () {
 
-    Route::get("cart_list",[ProductController::class,'cartList']); //cart List
+    Route::get("cart_list",[ProductController::class,'cartList'])->name('cart_list');//cart List
+    Route::get("remove_from_cart/{id}",[ProductController::class,'destroyFromCart']); //cart List
 
 });
 

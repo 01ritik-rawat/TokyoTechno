@@ -29,11 +29,11 @@
                     </div>
                     <div class="d-flex">
                         <!-- TODO::add + - to the card -->
-                        <a href="#" class="btn btn-standard stretched-link ">-</a>
-                        <a href="#" class="btn btn-standard stretched-link ">({{$item['count']}})</a>
-                        <a href="#" class="btn btn-standard stretched-link ">+</a>
+                        <a href="#" class="btn btn-standard   ">-</a>
+                        <a href="#" class="btn btn-standard   ">({{$item['count']}})</a>
+                        <a href="#" class="btn btn-standard   ">+</a>
 
-                        <a href="detail/remove_from_cart/{{$item['product_id']}}" class="btn btn-danger stretched-link ms-auto">Remove</a>
+                        <a href="remove_from_cart/{{$item['product_id']}}" class="btn btn-danger   ms-auto">Remove</a>
                     </div>
                 </div>
             </div>

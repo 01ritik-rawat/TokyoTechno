@@ -65,8 +65,13 @@ class ProductController extends Controller
         DB::raw('SUM(item_count) as count'))->groupBy('product_id')->get(); //better query with count of items
 
         return view('cartList', ['products' => $cartItems]);
+    }
 
+    public function destroyFromCart($productId){
+        Cart::where('product_id',$productId)->delete();
+        echo"Hiwfvrvervr";
 
+        return redirect()->route('cart_list');
     }
     
 }
