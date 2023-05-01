@@ -7,23 +7,40 @@
 
 
 <div class="container">
-    <h2>Search Results</h2>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4">
+    <div class="d-flex align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check me-3" viewBox="0 0 16 16">
+            <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+        </svg>
+        <h1 class="display-2">Your Cart</h1>
+    </div>
+    
+    
+    <h2>Cart Items</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         @foreach ($products as $item)
-        <a href="detail/{{$item['product_id']}}">
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{{$item['product']['gallery']}}" class="card-img-top img-fluid" alt="Image of {{$item['name']}}">
-                    <div class="card-body">
-                        <!-- // todo: fix the design here -->
-                        <h4 class="card-title">{{$item['product']['name']}}</h4>
-                        <a class="card-subtitle">&#8377 {{$item['product']['price']}}</a>
+        <div class="col">
+            <div class="card h-100">
+                <img src="{{$item['product']['gallery']}}" class="card-img-top img-fluid" alt="Image of {{$item['name']}}" style=" height: 150px;"  >
+                <div class="card-body">
+                    <div class="d-flex">
+                        <h5 class="card-title">{{$item['product']['name']}}</h5>
+                        <p class="card-text ms-auto">&#8377 {{$item['product']['price']}}</p>
+                    </div>
+                    <div class="d-flex">
+                        <!-- TODO::add + - to the card -->
+                        <a href="#" class="btn btn-standard stretched-link ">-</a>
+                        <a href="#" class="btn btn-standard stretched-link ">({{$item['count']}})</a>
+                        <a href="#" class="btn btn-standard stretched-link ">+</a>
+
+                        <a href="detail/remove_from_cart/{{$item['product_id']}}" class="btn btn-danger stretched-link ms-auto">Remove</a>
                     </div>
                 </div>
             </div>
-        </a>
+        </div>
         @endforeach
     </div>
+
 </div>
 
 

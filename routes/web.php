@@ -28,8 +28,12 @@ Route::get("/detail/{id}",[ProductController::class,'detail']); //product detail
 Route::get("/search",[ProductController::class,'search']); //Search results page 
 Route::post("add_to_cart",[ProductController::class,'addToCart']); //Search results page 
 Route::get("logout",[UserController::class,'logout']); //Search results page w
-Route::get("cart_list",[ProductController::class,'cartList']); //cart List 
 
+Route::prefix('user')->middleware('UserLoginAuth')->group(function () {
+
+    Route::get("cart_list",[ProductController::class,'cartList']); //cart List
+
+});
 
 
 

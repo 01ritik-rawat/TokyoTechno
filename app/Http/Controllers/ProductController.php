@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session as FacadesSession;
 
 class ProductController extends Controller
@@ -60,7 +61,9 @@ class ProductController extends Controller
     public function cartList(){
         $userId=FacadesSession::get('user')->id;
 
-        $cartItems = Cart::with('product')->where('user_id', $userId)->get();
+        $cartItems = Cart::with('product')->where('user_id', $userId)->select('product_id',  
+        DB::raw('SUM(item_count) as count'))->groupBy('product_id')->get(); //better query with count of items
+
         return view('cartList', ['products' => $cartItems]);
 
 
