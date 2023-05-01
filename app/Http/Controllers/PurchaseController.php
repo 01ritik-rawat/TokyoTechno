@@ -29,6 +29,11 @@ class PurchaseController extends Controller
         }
         $deliveryLookups=ConsumerLookup::where('lookup_key','DELIVERY_CHARGES')->first('lookup_value');
         $deliveryCharges=json_decode($deliveryLookups->lookup_value);
-        return view('orderNow',['products'=>$data, 'amount'=>$amount, 'deliveryCharges'=>$deliveryCharges]);
+
+        $taxLookups=ConsumerLookup::where('lookup_key','TAX')->first('lookup_value');
+        $taxCharges=json_decode($taxLookups->lookup_value);
+
+
+        return view('orderNow',['products'=>$data, 'amount'=>$amount, 'deliveryCharges'=>$deliveryCharges, 'tax'=>$taxCharges]);
     }
 }

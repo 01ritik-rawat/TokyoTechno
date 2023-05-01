@@ -4,8 +4,13 @@
 <?php
 $country = env('CONSUMER_COUNTRY', 'india');
 //  TODO: ADD CURRENCY IN LOOKUPS
+
+    if (isset($amount) && isset($tax)) {
+        $grandTotal = ($amount * ($tax->$country / 100)) + $amount + $deliveryCharges->$country;
+        // do something with $total
+    }
 ?>
-<div class="container-fluid ms-auto">
+<div class="container-fluid col-sm-6">
 
     <br>
     <div class="d-flex align-items-center">
@@ -21,7 +26,7 @@ $country = env('CONSUMER_COUNTRY', 'india');
     <br>
 
 
-    <div class="container ">
+    <div class="container col ">
     <table class="table table-striped-columns table-sm">
         <thead>
             <tr class="table-dark">
@@ -36,10 +41,14 @@ $country = env('CONSUMER_COUNTRY', 'india');
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $item['product']['name'] }}</td>
-                <td>{{ $item['count'] }}</td>
-                <td>{{ $item['count'] * $item['product']['price'] }}</td>
+                <td>{{ number_format($item['count']) }}</td>
+                <td>{{ number_format($item['count'] * $item['product']['price']) }}</td>
             </tr>
             @endforeach
+            <tr class="table-secondary">
+      <td colspan="3" class="text-end"><strong>Sub Total</strong></td>
+      <td><strong>{{number_format($amount)}}</strong></td>
+    </tr>
         </tbody>
     </table>
     </div>
@@ -56,20 +65,20 @@ $country = env('CONSUMER_COUNTRY', 'india');
             <hr>
             <div class="d-flex justify-content-between mb-2">
                 <span>Subtotal:</span>
-                <span>{{$amount}}</span>
+                <span>&#8377 {{number_format($amount)}}</span>
             </div>
             <div class="d-flex justify-content-between mb-2">
                 <span>Delivery Charges:</span>
-                <span> {{$deliveryCharges->$country }}</span>
+                <span>&#8377 {{number_format($deliveryCharges->$country )}}</span>
             </div>
             <div class="d-flex justify-content-between mb-2">
                 <span>Tax:</span>
-                <span>tax</span>
+                <span>{{number_format($tax->$country)}}%</span>
             </div>
             <hr>
             <div class="d-flex justify-content-between">
-                <span><strong>Total:</strong></span>
-                <span><strong>grandTotal</strong></span>
+                <span><strong>Grand Total:</strong></span>
+                <span><strong>&#8377 {{number_format($grandTotal)}}</strong></span>
             </div>
             <hr>
             <button class="btn btn-primary w-100">Place Order</button>
