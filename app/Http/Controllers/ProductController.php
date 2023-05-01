@@ -67,11 +67,16 @@ class ProductController extends Controller
         return view('cartList', ['products' => $cartItems]);
     }
 
-    public function destroyFromCart($productId){
-        Cart::where('product_id',$productId)->delete();
-        echo"Hiwfvrvervr";
+    public function destroyFromCart($productId)
+    {
+        if (!$productId) {
+            print("message=> product id invalid/ empty."
+            );
+        } else {
 
-        return redirect()->route('cart_list');
+            Cart::where('product_id', $productId)->delete();
+            return redirect()->route('cart_list');
+        }
     }
     
 }

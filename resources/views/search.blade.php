@@ -1,6 +1,6 @@
 @extends('master')
 @section('content')
- <!-- todo:: dark theme -->
+ <!-- TODO:: dark theme -->
 
 
 <div class="container">
@@ -12,7 +12,7 @@
                 <div class="card h-100">
                     <img src="{{$item['gallery']}}" class="card-img-top img-fluid" alt="Image of {{$item['name']}}">
                     <div class="card-body">
-                        <!-- // todo: fix the design here -->
+                        <!-- // TODO: fix the design here -->
                         <h4 class="card-title">{{$item['name']}}</h4>
                         <a class="card-subtitle">&#8377 {{$item['name']}}</a>
                     </div>

@@ -33,12 +33,17 @@
                         <a href="#" class="btn btn-standard   ">({{$item['count']}})</a>
                         <a href="#" class="btn btn-standard   ">+</a>
 
-                        <a href="remove_from_cart/{{$item['product_id']}}" class="btn btn-danger   ms-auto">Remove</a>
+                        <a href="remove_from_cart/{{$item['product_id']}}" class="btn btn-danger   ms-auto">Remove</a>  
                     </div>
                 </div>
             </div>
         </div>
         @endforeach
+    </div>
+
+    <div>
+        <a href="order_now" class="button">Buy Now</a>
+
     </div>
 
 </div>

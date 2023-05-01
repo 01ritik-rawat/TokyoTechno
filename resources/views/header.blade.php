@@ -31,7 +31,7 @@ if( Session::has('user') ){
                         {{ Session::get('user')->name }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <!-- //todo::edit profile -->
+                        <!-- //TODO::edit profile -->
                         <li><a class="dropdown-item" href="#">Account</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li>

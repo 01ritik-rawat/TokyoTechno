@@ -1,6 +1,6 @@
 <!-- Footer -->
 
-<!-- todo:: customize to the fullest -->
+<!-- TODO:: customize to the fullest -->
 <footer class="text-center text-lg-start bg-light text-muted">
     <!-- Section: Social media -->
     <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">

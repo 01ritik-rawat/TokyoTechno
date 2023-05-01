@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,7 @@ Route::prefix('user')->middleware('UserLoginAuth')->group(function () {
 
     Route::get("cart_list",[ProductController::class,'cartList'])->name('cart_list');//cart List
     Route::get("remove_from_cart/{id}",[ProductController::class,'destroyFromCart']); //cart List
+    Route::get("order_now",[PurchaseController::class,'orderNow'])->name('order_now');//cart List
 
 });
 
