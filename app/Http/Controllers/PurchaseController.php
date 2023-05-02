@@ -6,9 +6,12 @@ use App\Models\Cart;
 use App\Models\ConsumerLookup;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use PhpParser\Node\Stmt\Return_;
 
 class PurchaseController extends Controller
 {
@@ -40,12 +43,21 @@ class PurchaseController extends Controller
     }
 
     public function placeOrder(Request $request){
+
         $orderData=json_decode($request->orderData);
         $order=new Order;
         $order->user_id=Session::get('user')->id;
         $order->address=$request->address;
         $order->phone=$request->phone;
         $order->email=$request->email;
+        // return $request;
+
+        $order->sub_total=$request->subTotal;
+        $order->tax_rate=$request->taxRate;
+        $order->total_tax=$request->totalTax;
+        $order->delivery_charges=$request->deliveryCharges;
+
+
         // $order->alt_phone=$request->address;
         $order->total_amount=$orderData->grandTotal;
         $order->payment_method=$request->paymentMethod;
@@ -93,5 +105,31 @@ class PurchaseController extends Controller
 
 
         
+    }
+
+    public function getAllOrders(){
+        $userId=Session::get('user')->id;
+        
+        $orders= User::find($userId)->orders()->orderBy('created_at', 'desc')->limit(10)->get();
+        return view('myOrders',['orders'=>$orders]);
+    }
+
+    public function getOrderById(Request $request){
+        $orderId= $request->id;
+        $userId=Session::get('user')->id;
+
+        $orderDetails=user::find($userId)->orders()->where('id',$orderId)->first();
+
+        // if(empty($orderDetails)){
+        //     return ['message'=>'check the order id','userId'=>$userId];
+        // }
+        $orderItems=Order::find($orderId)->orderItems()->with('products')->get();       
+        // return $orderItems[0]->products;
+        return view('orderDetails',['data'=>$orderItems, 'orderDetails'=>$orderDetails]);
+
+        
+        // $orderId=$request->orderId
+
+
     }
 }

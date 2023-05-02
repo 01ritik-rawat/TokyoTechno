@@ -26,18 +26,27 @@ if( Session::has('user') ){
                     <li class="nav-item">
                         <a class="nav-link " aria-current="page" href="/user/cart_list">Cart({{$cartCount}})</a>
                     </li>
+                    <!-- TODO: VERIFY PROFILE CHECK -->
+                    <!-- TODO: MAILABLES FRO ORDERS  -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i>    
                             {{ Session::get('user')->name }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <!-- //TODO::edit profile -->
-                            <li><a class="dropdown-item" href="#">Account</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <a class="dropdown-item " href="#">
+                                    <i class="bi bi-person-lines-fill"></i>
+                                    Account           
+                                </a>
+                            </li>
+                            <!-- TODO:ADD ACTIVE ORDERS -->
+                            <li><a class="dropdown-item" href="/user/purchase/all_orders">My Orders</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="/logout">Log Out</a></li>
+                            <li><a class="dropdown-item " href="/logout">Log Out</a></li>
                         </ul>
                     </li>
                     

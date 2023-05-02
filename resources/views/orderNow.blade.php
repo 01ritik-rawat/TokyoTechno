@@ -95,11 +95,12 @@ if (isset($grandTotal)) {
                             </div>
                             <input type="hidden" name="paymentMethod" value="RAZER_PAY">
                             <input type="hidden" name="taxRate" value="{{$tax->$country}}">
+                            <input type="hidden" name="subTotal" value="{{$amount}}">
                             <input type="hidden" name="totalTax" value="{{$amount * ($tax->$country / 100)}}">
                             <input type="hidden" name="deliveryCharges" value="{{$deliveryCharges->$country}}">
                             <input type="hidden" name="grandTotal" value="{{$grandTotal}}">
                             <input type="hidden" name="orderData" value="{{json_encode($finalOrderData)}}" required>
-                            <button type="submit" id="submit-btn" class="btn btn-primary">Submit</button>
+                            <button type="submit" hidden id="submit-btn" class="btn btn-primary">Submit</button>
                         </form>
 
                     </div>

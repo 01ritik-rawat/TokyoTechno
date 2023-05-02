@@ -35,9 +35,12 @@ Route::prefix('user')->middleware('UserLoginAuth')->group(function () {
     Route::get("cart_list",[ProductController::class,'cartList'])->name('cart_list');//cart List
     Route::get("remove_from_cart/{id}",[ProductController::class,'destroyFromCart']); //delete from cart List
     Route::get("order_now",[PurchaseController::class,'orderNow'])->name('order_now');//calculation n billing
-
+    
     Route::prefix('purchase')->group(function () {
         Route::post("order-details",[PurchaseController::class,'placeOrder']); //enter final delivery and order details         
+        Route::get("all_orders",[PurchaseController::class,'getAllOrders'])->name('all_orders');// get all orders of user
+        Route::get("get_order_by_id/{id}",[PurchaseController::class,'getOrderById'])->name('get_order_by_id');// get order by using order Id
+
     });
 
 
