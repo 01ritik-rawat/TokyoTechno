@@ -43,26 +43,26 @@
                                 @foreach ($orderData as $product )
                                     <tr>
                                         <td>{{$product->product->name }}</td>
-                                        <td>&#8377 {{$product->product->price }}/ per item</td>
+                                        <td>&#8377 {{ number_format($product->product->price )}}/ per item</td>
                                         <td>{{$product->count }}</td>
-                                        <td>&#8377 {{$product->product->price * $product->count }}</td>
+                                        <td>&#8377 {{number_format($product->product->price * $product->count )}}</td>
                                     </tr>
                                 @endforeach
                                 <tr>
                                     <td colspan="3">Subtotal</td>
-                                    <td>&#8377 {{$subTotal }}</td>
+                                    <td>&#8377 {{number_format($subTotal) }}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="3">Tax ({{$taxRate}}%)</td>
-                                    <td>&#8377 {{$totalTax }}</td>
+                                    <td>&#8377 {{number_format($totalTax )}}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="3">Shipping</td>
-                                    <td>&#8377 {{$deliveryCharges }}</td>
+                                    <td>&#8377 {{number_format($deliveryCharges )}}</td>
                                 </tr>
                                 <tr class="table-active">
                                     <td colspan="3"><strong>Total</strong></td>
-                                    <td><strong>&#8377 {{$grandTotal }}</strong></td>
+                                    <td><strong>&#8377 {{number_format($grandTotal) }}</strong></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -74,7 +74,13 @@
         </div>
     </div>
 </div>
+<?php
 
+use App\Http\Controllers\ProductController;
+
+$deleteCart =new ProductController;
+$deleteCart->emptyCart();
+?>
 
 
 
