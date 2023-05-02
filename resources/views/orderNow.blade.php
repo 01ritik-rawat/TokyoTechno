@@ -5,12 +5,15 @@
 $country = env('CONSUMER_COUNTRY', 'india');
 //  TODO: ADD CURRENCY IN LOOKUPS
 
-    if (isset($amount) && isset($tax)) {
-        $grandTotal = ($amount * ($tax->$country / 100)) + $amount + $deliveryCharges->$country;
-        // do something with $total
-    }
+if (isset($amount) && isset($tax)) {
+    $grandTotal = ($amount * ($tax->$country / 100)) + $amount + $deliveryCharges->$country;
+    // do something with $total
+}
+if (isset($grandTotal)) {
+    $finalOrderData = ['products' => $products, 'country' => $country, 'grandTotal' => $grandTotal];
+}
 ?>
-<div class="container-fluid col-sm-6">
+<div class="container-fluid col-sm-7">
 
     <br>
     <div class="d-flex align-items-center">
@@ -25,32 +28,32 @@ $country = env('CONSUMER_COUNTRY', 'india');
     <br>
     <br>
 
-
+    <!-- //order table -->
     <div class="container col ">
-    <table class="table table-striped-columns table-sm">
-        <thead>
-            <tr class="table-dark">
-                <th scope="col">S.No.</th>
-                <th scope="col">Product Name</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($products as $item)
-            <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $item['product']['name'] }}</td>
-                <td>{{ number_format($item['count']) }}</td>
-                <td>{{ number_format($item['count'] * $item['product']['price']) }}</td>
-            </tr>
-            @endforeach
-            <tr class="table-secondary">
-      <td colspan="3" class="text-end"><strong>Sub Total</strong></td>
-      <td><strong>{{number_format($amount)}}</strong></td>
-    </tr>
-        </tbody>
-    </table>
+        <table class="table table-striped-columns table-sm">
+            <thead>
+                <tr class="table-dark">
+                    <th scope="col">S.No.</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($products as $item)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $item['product']['name'] }}</td>
+                    <td>{{ number_format($item['count']) }}</td>
+                    <td>{{ number_format($item['count'] * $item['product']['price']) }}</td>
+                </tr>
+                @endforeach
+                <tr class="table-secondary">
+                    <td colspan="3" class="text-end"><strong>Sub Total</strong></td>
+                    <td><strong>{{number_format($amount)}}</strong></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
 
@@ -60,8 +63,55 @@ $country = env('CONSUMER_COUNTRY', 'india');
     <hr>
     <br>
     <div class="row mt-4">
-        <div class="col-md-6 offset-md-3">
-            <h5>Order Summary</h5>
+
+        <!-- delivery details -->
+        <div class="col-md-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xxl-8 offset-xxl-2">
+                        <h5>Order Details</h5>
+                        <form action="purchase/order-details" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number:</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address:</label>
+                                <textarea type="text" class="form-control" rows="3" id="address" name="address"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="notes">Instructions for Logistics:</label>
+                                <input class="form-control" id="notes" name="notes" placeholder="Enter any special instructions or notes">
+                                <!-- TODO:STORE THE SPECIAL INSTRUCTIONS IN DB TOO  -->
+                            </div>
+                            <input type="hidden" name="paymentMethod" value="RAZER_PAY">
+                            <input type="hidden" name="orderData" value="{{json_encode($finalOrderData)}}" required>
+                            <button type="submit" id="submit-btn" class="btn btn-primary">Submit</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+
+        <!-- order Summary -->
+        <div class="col-md-6">
+            <h4>Order Summary</h4>
             <hr>
             <div class="d-flex justify-content-between mb-2">
                 <span>Subtotal:</span>
@@ -81,9 +131,10 @@ $country = env('CONSUMER_COUNTRY', 'india');
                 <span><strong>&#8377 {{number_format($grandTotal)}}</strong></span>
             </div>
             <hr>
-            <button class="btn btn-primary w-100">Place Order</button>
+            <button type="submit" onclick="document.getElementById('submit-btn').click();" class="btn btn-primary w-100">Place Order</button>
         </div>
     </div>
+    <hr>
 
 </div>
 @endsection

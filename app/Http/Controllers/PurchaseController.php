@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\ConsumerLookup;
+use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -35,5 +37,44 @@ class PurchaseController extends Controller
 
 
         return view('orderNow',['products'=>$data, 'amount'=>$amount, 'deliveryCharges'=>$deliveryCharges, 'tax'=>$taxCharges]);
+    }
+
+    public function placeOrder(Request $request){
+
+        $orderData=json_decode($request->orderData);
+        $order=new Order;
+        $order->user_id=Session::get('user')->id;
+        $order->address=$request->address;
+        $order->phone=$request->phone;
+        $order->email=$request->email;
+        // $order->alt_phone=$request->address;
+        $order->total_amount=$orderData->grandTotal;
+        $order->payment_method=$request->paymentMethod;
+        $order->payment_status='not_initialized';
+
+        $orderSave=$order->save();
+        if(!$orderSave){
+            return ['message'=>'order not placed', 'orderData'=>$request];
+        }
+
+        foreach($orderData->products as $orderItem){
+            $orderItemTable = new OrderItem;            
+            $orderItemTable->quantity=$orderItem->count;
+            $orderItemTable->product_name=$orderItem->product->name;
+            $orderItemTable->product_id=$orderItem->product->id;
+            $orderItemTable->order_id=$order->id;
+            $orderItemTable->save();
+        }
+        if(!$orderItemTable){
+            return ['message'=>'order item not placed', 'orderData'=>$request];
+        }
+        return ['message'=>'hey !! order placed', 'orderData'=>$request];
+
+
+
+        
+
+
+        
     }
 }
