@@ -69,14 +69,31 @@ class ProductController extends Controller
 
     public function destroyFromCart($productId)
     {
+        $userId = FacadesSession::get('user')->id;
+
         if (!$productId) {
             print("message=> product id invalid/ empty."
             );
         } else {
 
-            Cart::where('product_id', $productId)->delete();
+            Cart::where('product_id', $productId)->where('user_id', $userId)->delete();
             return redirect()->route('cart_list');
         }
     }
+
+    public function emptyCart()
+    {
+        $userId = FacadesSession::get('user')->id;
+
+        if (!$userId) {
+            print("message=> user id."
+            );
+        } else {
+
+            Cart::where('user_id', $userId)->delete();
+        }
+    }
+
+    
     
 }

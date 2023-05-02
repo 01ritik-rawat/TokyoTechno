@@ -40,7 +40,6 @@ class PurchaseController extends Controller
     }
 
     public function placeOrder(Request $request){
-
         $orderData=json_decode($request->orderData);
         $order=new Order;
         $order->user_id=Session::get('user')->id;
@@ -51,6 +50,8 @@ class PurchaseController extends Controller
         $order->total_amount=$orderData->grandTotal;
         $order->payment_method=$request->paymentMethod;
         $order->payment_status='not_initialized';
+
+        $subTotal=0;
 
         $orderSave=$order->save();
         if(!$orderSave){
@@ -64,11 +65,27 @@ class PurchaseController extends Controller
             $orderItemTable->product_id=$orderItem->product->id;
             $orderItemTable->order_id=$order->id;
             $orderItemTable->save();
+
+            $subTotal=$subTotal+ ($orderItem->count * $orderItem->product->price);
+
+
+
         }
         if(!$orderItemTable){
             return ['message'=>'order item not placed', 'orderData'=>$request];
         }
-        return ['message'=>'hey !! order placed', 'orderData'=>$request];
+        return view('invoice', [
+            'order' => $order,
+            'orderData' => $orderData->products,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'subTotal' => $subTotal,
+            'grandTotal' => $request->grandTotal,
+            'taxRate'=>$request->taxRate,
+            'totalTax'=>$request->totalTax,
+            'deliveryCharges'=>$request->deliveryCharges
+        ]);
 
 
 

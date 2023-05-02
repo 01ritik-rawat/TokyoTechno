@@ -51,10 +51,10 @@
         @foreach ($products as $item)
         <a href="detail/{{$item['id']}}">
             <div class="col">
-                <div class="card h-100">
+                <div  class="card h-100">
                     <img src="{{$item['gallery']}}" class="card-img-top img-fluid" alt="Image of {{$item['name']}}">
                     <div class="card-body">
-                        <h5 class="card-title">{{$item['name']}}</h5>
+                        <h5  class="card-title">{{$item['name']}} -></h5>
                     </div>
                 </div>
             </div>
