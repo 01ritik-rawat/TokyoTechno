@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\UserController;
@@ -19,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+// Route::get('generate_invoice_pdf', [PDFController::class, 'index'])->name('generate_invoice_pdf'); //for downloading PDF 
 
 Route::get("login",function(){
     return view('login');
@@ -47,6 +50,17 @@ Route::prefix('user')->middleware('UserLoginAuth')->group(function () {
 
 
 });
+
+Route::prefix('admin')->group(function () {
+    Route::get("/",function(){
+        return view('adminLogin');
+    });
+
+    Route::post("login",[AdminController::class,'login']);
+
+
+});
+
 
 
 

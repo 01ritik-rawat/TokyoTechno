@@ -20,13 +20,15 @@ class UserController extends Controller
         return $carts;
 
     }
+
     public function login(Request $request){
 
         //validate user
         //this first thingy has to be fixed // add more checks
         $user=User::where('email',$request->email)->first();
         if(!$user || !Hash::check($request->password, $user->password)){
-            return "incorrect password/ username";
+            
+            return view('login',['message'=>"incorrect password/ username"]);
         }
         else{
             $request->session()->put('user',$user);

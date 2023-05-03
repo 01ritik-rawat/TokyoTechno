@@ -1,14 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProductController;
-use Illuminate\Support\Facades\Session;
-
-//fetching data for cart
-$cartCount = 0;
-
-if( Session::has('user') ){
-    $cartCount = ProductController::cartItem();
-}
 
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -20,19 +11,19 @@ if( Session::has('user') ){
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 @if ( Session::has('user') )
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="/user/cart_list">Cart({{$cartCount}})</a>
+                        <a class="nav-link " aria-current="page" href="#">Add Products</a>
                     </li>
-                    <!-- TODO: VERIFY PROFILE CHECK -->
-                    <!-- TODO: MAILABLES FRO ORDERS  -->
+                    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-circle"></i>    
                             {{ Session::get('user')->name }}
                         </a>
+                        
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <!-- //TODO::edit profile -->
                             <li>
@@ -42,11 +33,11 @@ if( Session::has('user') ){
                                 </a>
                             </li>
                             <!-- TODO:ADD ACTIVE ORDERS -->
-                            <li><a class="dropdown-item" href="/user/purchase/all_orders">My Orders</a></li>
+                            <li><a class="dropdown-item" href="#">My Orders</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item " href="/logout">Log Out</a></li>
+                            <li><a class="dropdown-item " href="#">Log Out</a></li>
                         </ul>
                     </li>
                     
@@ -61,7 +52,7 @@ if( Session::has('user') ){
                 </li>
             </ul>
             <form action='/search' class="d-flex">
-                <input class="form-control me-2 search-box" type="search" placeholder="Search" name="query" aria-label="Search">
+                <input class="form-control me-2 search-box" type="search" placeholder="Search for users" name="query" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>

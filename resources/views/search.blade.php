@@ -14,7 +14,7 @@
                     <div class="card-body">
                         <!-- // TODO: fix the design here -->
                         <h4 class="card-title">{{$item['name']}}</h4>
-                        <a class="card-subtitle">&#8377 {{$item['name']}}</a>
+                        <a class="card-subtitle">&#8377 {{ number_format($item['price'])}}</a>
                     </div>
                 </div>
             </div>

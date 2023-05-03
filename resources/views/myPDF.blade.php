@@ -1,5 +1,4 @@
 @extends('master')
-@section('content')
 
 <div class="container mt-5">
     <div class="row justify-content-center">
@@ -37,12 +36,12 @@
                             </thead>
                             <tbody>
                                 @foreach ($data as $product )
-                                    <tr>
-                                        <td>{{$product->products->name }}</td>
-                                        <td>&#8377 {{ number_format($product->products->price )}}/ per item</td>
-                                        <td>{{$product->quantity }}</td>
-                                        <td>&#8377 {{number_format($product->products->price * $product->quantity )}}</td>
-                                    </tr>
+                                <tr>
+                                    <td>{{$product->products->name }}</td>
+                                    <td>&#8377 {{ number_format($product->products->price )}}/ per item</td>
+                                    <td>{{$product->quantity }}</td>
+                                    <td>&#8377 {{number_format($product->products->price * $product->quantity )}}</td>
+                                </tr>
                                 @endforeach
                                 <tr>
                                     <td colspan="3">Subtotal</td>
@@ -68,11 +67,10 @@
 
             <div class="alert alert-success" role="alert">
                 <p class="mt-3">U can use this invoice to claim your warranty or replacements </p>
-                <a class="btn btn-success" href="{{ route('generate_invoice_pdf', ['data' => json_encode(['data'=>$orderItems, 'orderDetails'=>$orderDetails]) }}"> <i class="bi bi-download"></i> Download Invoice</a>
+                <a class="btn btn-success" href="{{ route('generate_invoice_pdf', ['data' => json_encode(['data'=>$data, 'orderDetails'=> $orderDetails])] ) }}"> <i class="bi bi-download"></i> Download Invoice</a>
 
 
             </div>
-
 
 
 
@@ -86,5 +84,3 @@
 </div>
 
 
-<script>
-@endsection

@@ -1,25 +1,22 @@
-@extends('master')
+@extends('adminMaster')
 @section('content')
 
 
+<h1>
+    Login Page
+</h1>
 
-<div class="container custom-login mt-5 ">
-    <h1 class="heading">
-        Login Page
-    </h1>
-
-
-    @if (isSet($message))
+<div class="container custom-login">
+    
+@if (isSet($message))
     <div class="alert alert-danger" role="alert">
         <a>{{ $message }}</a>
     </div>
     @endif
 
-
-    </h3>
     <div class="row">
         <div class="col-sm-4 col-sm-offset-4 mx-auto">
-            <form action="/login" method="POST">
+            <form action="login" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
