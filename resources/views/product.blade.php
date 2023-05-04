@@ -4,7 +4,7 @@
 
 <div class="container custom-product">
     <div class="row">
-
+    
 
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
             <!-- slide indicators -->
@@ -18,7 +18,7 @@
 
             <!-- slides -->
             <div class="carousel-inner">
-                @foreach ($products as $item )
+                @foreach ($banner as $item )
                 <div class="carousel-item {{$item['id']==1 ? 'active' : '' }}">
                     <a href="detail/{{$item['id']}}">
                         <img src="{{$item['gallery']}}" class="d-block w-100 img-fluid carousel-image" alt="Images of Products">

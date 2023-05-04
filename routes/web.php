@@ -51,12 +51,19 @@ Route::prefix('user')->middleware('UserLoginAuth')->group(function () {
 
 });
 
-Route::prefix('admin')->group(function () {
-    Route::get("/",function(){
-        return view('adminLogin');
-    });
+Route::prefix('admin')->middleware('AdminLoginAuth')->group(function () {
+    Route::get("/login",function(){
+        return view('adminLogin'); 
+    }); // takes us to login page
+    Route::get("/",[AdminController::class,'index']); //redirected here after successful login. 
 
+    
     Route::post("login",[AdminController::class,'login']);
+    Route::get("add_products_form",[AdminController::class,'openProductForm']); //opens the  add product form 
+    Route::post("add_product",[AdminController::class,'addProduct']); //Adds the product  
+    Route::put("edit_product",[AdminController::class,'editProduct']); //edit the product  
+    Route::delete("delete_product/{id}",[AdminController::class,'deleteProduct']); //delete the product  
+    Route::get("get_product",[AdminController::class,'getProduct'])->name('admin.get_product'); //delete the product  
 
 
 });

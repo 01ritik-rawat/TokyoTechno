@@ -2,21 +2,7 @@
 @section('content')
 
 
-
-    <!-- @if (isSet($message))
-    <div class="alert alert-danger" role="alert">
-        <h1>
-            Login Page
-        </h1>
-    </div>
-    @endif -->
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    @if (isset($message))
+@if (isset($message))
 <div class="alert-fill">
   <div class="alert alert-success" role="alert">
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -113,28 +99,36 @@ setTimeout(function() {
 }, 5500);
 </script>
 
-<div class="container custom-login">
-    <!-- TODO: CONSUMER LIST -->
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+<div class="container">
+    <h1>Trending products</h1>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach ($products as $item)
+        <a>
+    <div class="col">
+        <div class="card h-100">
+            <img src="{{$item['gallery']}}" class="card-img-top img-fluid" alt="Image of {{$item['name']}}">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title">{{$item['name']}}</h5>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i></button>
+                        <form action="/admin/delete_product/{{$item->id}}" method="POST">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+</form>
+
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>
 
 
+        @endforeach
+    </div>
 </div>
 
 

@@ -16,9 +16,10 @@ class ProductController extends Controller
     public function index(Request $request){
 
         $data=Product::all();
+        $banner=Product::take(5)->get();
         // return $data;
 
-        return view('product',['products'=>$data]);
+        return view('product',['products'=>$data, 'banner'=>$banner]);
 
     }
     public function detail($id){
