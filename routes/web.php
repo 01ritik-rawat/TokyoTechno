@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-// Route::get('generate_invoice_pdf', [PDFController::class, 'index'])->name('generate_invoice_pdf'); //for downloading PDF 
+Route::get('generate_invoice_pdf', [PDFController::class, 'index'])->name('generate_invoice_pdf'); //for downloading PDF 
 
 Route::get("login",function(){
     return view('login');

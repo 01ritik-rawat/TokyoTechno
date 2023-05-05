@@ -12,8 +12,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <p><strong>Order Number:</strong> #{{ $orderDetails->id }}</p>
-                            <p><strong>Order Date:</strong> {{$orderDetails->created_at->format('d-m-Y') }}</p>
-                            <p><strong>Payment Method:</strong> {{$orderDetails->paymentMethod }}</p>
+                            <p><strong>Order Date:</strong> {{$orderDetails->created_at }}</p>
+                            <p><strong>Payment Method:</strong> {{$orderDetails->payment_method }}</p>
                         </div>
                         <div class="col-md-6 text-md-end">
                             <p><strong>Shipping Address:</strong> {{$orderDetails->address }}</p>
@@ -38,26 +38,26 @@
                                 @foreach ($data as $product )
                                 <tr>
                                     <td>{{$product->products->name }}</td>
-                                    <td>&#8377 {{ number_format($product->products->price )}}/ per item</td>
+                                    <td>&#8377; {{ number_format($product->products->price )}}/ per item</td>
                                     <td>{{$product->quantity }}</td>
-                                    <td>&#8377 {{number_format($product->products->price * $product->quantity )}}</td>
+                                    <td>&#8377; {{number_format($product->products->price * $product->quantity )}}</td>
                                 </tr>
                                 @endforeach
                                 <tr>
                                     <td colspan="3">Subtotal</td>
-                                    <td>&#8377 {{number_format($orderDetails->sub_total) }}</td>
+                                    <td>&#8377; {{number_format($orderDetails->sub_total) }}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="3">Tax ({{$orderDetails->tax_rate}}%)</td>
-                                    <td>&#8377 {{number_format($orderDetails->total_tax )}}</td>
+                                    <td>&#8377; {{number_format($orderDetails->total_tax )}}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="3">Shipping</td>
-                                    <td>&#8377 {{number_format($orderDetails->delivery_charges )}}</td>
+                                    <td>&#8377; {{number_format($orderDetails->delivery_charges )}}</td>
                                 </tr>
                                 <tr class="table-active">
                                     <td colspan="3"><strong>Total</strong></td>
-                                    <td><strong>&#8377 {{number_format($orderDetails->total_amount) }}</strong></td>
+                                    <td><strong>&#8377; {{number_format($orderDetails->total_amount) }}</strong></td>
                                 </tr>
                             </tbody>
                         </table>

@@ -68,7 +68,7 @@
 
             <div class="alert alert-success" role="alert">
                 <p class="mt-3">U can use this invoice to claim your warranty or replacements </p>
-                <a class="btn btn-success" href="{{ route('generate_invoice_pdf', ['data' => json_encode(['data'=>$orderItems, 'orderDetails'=>$orderDetails]) }}"> <i class="bi bi-download"></i> Download Invoice</a>
+                <a class="btn btn-success" href="{{ route('generate_invoice_pdf', ['data' => json_encode(['data'=>$data, 'orderDetails'=>$orderDetails])]) }}"> <i class="bi bi-download"></i> Download Invoice</a>
 
 
             </div>
