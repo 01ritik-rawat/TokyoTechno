@@ -28,6 +28,8 @@ Route::get("login",function(){
 });
 Route::post("login",[UserController::class,'login']);
 Route::get("/",[ProductController::class,'index']); //redirected here after successful login. 
+Route::get("signup_form",[UserController::class,'signUpForm']); //opens up the sign up form
+Route::get("sign_up",[UserController::class,'signUp']); //opens up the sign up form
 Route::get("/detail/{id}",[ProductController::class,'detail']); //product detail page
 Route::get("/search",[ProductController::class,'search']); //Search results page 
 Route::post("add_to_cart",[ProductController::class,'addToCart']); //Search results page 

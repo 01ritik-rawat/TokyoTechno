@@ -40,10 +40,26 @@
             </form>
 
         </div>
+        <div class="text-center">
+            <p>Don't have an account? <a href="/signup_form">Let's sign up</a></p>
+        </div>
+
 
     </div>
 
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 @endsection
