@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('customer_id');
+            $table->dropUnique(['email']); // droping the unique constraint on email column
+            $table->string('email',50)->change();
             //
         });
     }
@@ -23,7 +25,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('customer_id')->unique()->startingValue(100);
+            $table->integer('customer_id')->unique()->nullable()->startingValue(100);
+            $table->string('email',50)->unique();
             
         });
     }

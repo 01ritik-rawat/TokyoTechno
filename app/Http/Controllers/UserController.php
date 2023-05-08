@@ -9,6 +9,7 @@ use App\Events\SendMail;
 use App\Listeners\SendEmailListener;
 use App\Mail\VerifyOtp;
 use App\Models\User;
+use App\Models\UserOtp;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -69,7 +70,6 @@ class UserController extends Controller
             } 
         }
 
-        
         $user= new User;
         $user->name=$request->name;
         $user->email=$request->email;
@@ -78,19 +78,28 @@ class UserController extends Controller
         $user->sign_up_type='email';
         $saved= $user->save();
         
+        
         // TODO:OTP VERIFY 
         if ($saved) {
             $otp = random_int(100000, 999999);
             // TODO: SAVE THE VALUE IN TABLE
             $emailData = ['email' => $user->email, 'otp' => $otp];
+            $userOtp=new UserOtp;
+            $userOtp->otp=$otp;
+            $userOtp->user_id=$user->id;
+            $userOtp->email=$user->email;
+            $userOtp->save();
+
+
             try {
                 Mail::to( $emailData['email'])->send(new VerifyOtp($emailData) );
-                echo "email sent" ;
+                //echo "email sent" ;
             } catch (Exception $e) {
-                echo "email not sent ";
+                //echo "email not sent ";
             }
             event(new SendMail($emailData));
-            return view('login', ['message' => 'signed up successfully.']);
+            
+            return view('signupOtpVerify', ['userId'=>$user->id, 'opt'=>$otp]);
         }
 
         return view('signUpForm',['message'=>'something went wrong. Try again after some time']);
@@ -101,6 +110,35 @@ class UserController extends Controller
          return redirect('/login');
     }
 
+    public function verifyOtp(Request $request)
+    {
+
+        $userOtp = $request->otp;
+        $userId = $request->userId;
+        $originalOtp = UserOtp::where('user_id', $userId)->where('expired', false)->latest()->first('otp');
+        if (empty($originalOtp)) {
+            return view('signUpForm', ['message' => 'something went Wrong Pls try again']);
+        }
+        $originalOtp = $originalOtp->otp;
+        if ($originalOtp) {
+            // echo"hi";
+            $masterOtpOn = env('MASTER_OTP_ON', true);
+            $masterOtp = env('MASTER_OTP');
+
+            if ($originalOtp == $userOtp || ($masterOtpOn && $userOtp == $masterOtp)) {
+                UserOtp::where('user_id', $userId)->where('expired', false)->update(['expired' => true]);
+                //echo "OTP verified";
+                return view('login', ['message' => 'signed up successfully.']);
+            }
+        }
+        //echo "OTP Not verified";
+
+        return view('signupOtpVerify', ['userId' => $userId, 'opt' => $userOtp, 'message' => 'invalid OTP. Try again please']);
+
+
+        // return view('signUpForm',['message'=>$message]);
+
+    }
     
 
 }
