@@ -20,7 +20,6 @@
 </head>
 
 <body>
-    <h1>userId== > {{$userId}}</h1>
     <div class="container mt-5">
         <!-- <h1 class="title">Enter OTP</h1> -->
         <div>
